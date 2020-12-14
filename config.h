@@ -50,3 +50,5 @@ color lowerColLim = {0,0.3,0};
 
 double crazyColorsMult = 1.5;
 double colorExpo = 2;
+
+char fileName[] = "hahahfilename.png";
