@@ -42,8 +42,6 @@ void doDrawing(struct point points[]) {
             };
         }
 
-        //printf("x %f y %f \n", shapeposition.x, shapeposition.y);
-
         if(method == pointRange) {
             average = allPoint(shapeposition, points);
         } else {
@@ -90,7 +88,6 @@ void doDrawing(struct point points[]) {
             cairo_fill(cr);
             cairo_stroke(cr);
         } else {
-            //printf("%f %f %f\n", average.r,average.g, average.b);
             cairo_rectangle(cr, shapeposition.x, shapeposition.y, recDims.x,recDims.y);
             cairo_fill(cr);
             cairo_stroke (cr);
@@ -108,19 +105,6 @@ void doDrawing(struct point points[]) {
 }
 
 int main (int argc, char *argv[]) {
-
-    /*    for(int i = 0; i<argc; i++) {
-            if(!strcmp(argv[i],"tp")) {
-                method = twoPoints;
-            } else if(!strcmp(argv[i],"ap")) {
-                method = pointRange;
-            } else if(!strcmp(argv[i],"tpng")) {
-                method = twoPointsNG;
-            } else if(!strcmp(argv[i],"op")) {
-                method = twoPointsNG;
-            }
-    */
-
 
     srand((unsigned)time(NULL));
 
@@ -166,8 +150,6 @@ int main (int argc, char *argv[]) {
         }
     }
 
-
-
     cairo_surface_t *surface =
         cairo_image_surface_create (CAIRO_FORMAT_ARGB32, surf_wid, surf_hei);
 
@@ -184,19 +166,15 @@ int main (int argc, char *argv[]) {
 
     if(debug) {
         for(int i = 0; i < num_points; i++) { // this code creates a square at each of the points, for debugging
-            //cairo_set_source_rgb(cr, points[i].r, points[i].g, points[i].b );
             cairo_set_source_rgb(cr,0,0,0);
             cairo_rectangle(cr, points[i].xy.x, points[i].xy.y, 20, 10);
             cairo_fill(cr);
             cairo_set_source_rgb(cr, points[i].r, points[i].g, points[i].b );
-            //cairo_set_source_rgb(cr,0,0,0);
             cairo_rectangle(cr, points[i].xy.x, points[i].xy.y, 10, 10);
             cairo_fill(cr);
         }
         cairo_stroke(cr);
     }
-
-
     cairo_surface_write_to_png (surface, fileName);
 
     cairo_surface_destroy (surface);
